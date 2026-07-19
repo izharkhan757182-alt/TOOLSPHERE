@@ -1,0 +1,121 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24'%3E%3Crect x='2' y='2' width='14' height='14' rx='4' fill='%237B5CFA'/%3E%3Crect x='8' y='8' width='14' height='14' rx='4' fill='%23C6FF3D' fill-opacity='0.9'/%3E%3C/svg%3E">
+<meta name="theme-color" content="#7B5CFA">
+<title>Number Base Converter — Binary, Decimal, Hex, Octal | ToolsPhere</title>
+<meta name="description" content="Convert numbers between binary, decimal, hexadecimal, and octal instantly. Free online tool for developers and students.">
+<link rel="canonical" href="https://toolsphere.online/tools/number-base-converter.html">
+<meta property="og:title" content="Number Base Converter — Binary, Decimal, Hex, Octal | ToolsPhere">
+<meta property="og:description" content="Convert numbers between binary, decimal, hexadecimal, and octal instantly. Free online tool for developers and students.">
+<meta property="og:type" content="website">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;500;600;700&family=Inter:wght@400;500;600&family=JetBrains+Mono:wght@400;500;700&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="../assets/style.css">
+
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "SoftwareApplication",
+  "name": "Number Base Converter",
+  "applicationCategory": "UtilitiesApplication",
+  "operatingSystem": "Any",
+  "offers": { "@type": "Offer", "price": "0", "priceCurrency": "USD" }
+}
+</script>
+</head>
+<body>
+<div class="bg-orb one"></div><div class="bg-orb two"></div><div class="bg-orb three"></div>
+
+<header class="site">
+  <a class="brand" href="../index.html"><div class="mark"><span></span><span></span></div>ToolsPhere</a>
+  <nav class="main-nav">
+    <a href="../index.html#tools">All Tools</a>
+    <a href="../blog/index.html">Blog</a>
+    <a href="../about.html">About</a>
+    <a href="../contact.html">Contact</a>
+    <a class="nav-cta" href="../index.html#tools">Browse Tools</a>
+  </nav>
+  <button class="menu-toggle" onclick="toggleMenu()">☰</button>
+</header>
+
+<main>
+  <div class="wrap">
+    <div class="breadcrumb"><a href="../index.html">Home</a> / <a href="../index.html#tools">Tools</a> / Number Base Converter</div>
+    <span class="eyebrow">Developer tools</span>
+    <h1 style="font-size:clamp(28px,4vw,42px); max-width:680px; margin:16px 0 10px;">Number Base Converter</h1>
+    <p class="sub" style="max-width:560px; margin-bottom:8px;">Convert any number between binary, decimal, hexadecimal, and octal.</p>
+
+
+    <div class="card">
+      <h3>Enter a number</h3>
+      <div class="row">
+        <div><label for="nbInput">Value</label><input type="text" id="nbInput" value="255" oninput="convertBase()"></div>
+        <div><label for="nbFrom">From base</label>
+          <select id="nbFrom" onchange="convertBase()">
+            <option value="10">Decimal (base 10)</option>
+            <option value="2">Binary (base 2)</option>
+            <option value="16">Hexadecimal (base 16)</option>
+            <option value="8">Octal (base 8)</option>
+          </select>
+        </div>
+      </div>
+      <div class="stat-grid" style="margin-top:20px;">
+        <div class="stat-box"><b id="nbDec">—</b><span>Decimal</span></div>
+        <div class="stat-box"><b id="nbBin">—</b><span>Binary</span></div>
+        <div class="stat-box"><b id="nbHex">—</b><span>Hexadecimal</span></div>
+        <div class="stat-box"><b id="nbOct">—</b><span>Octal</span></div>
+      </div>
+    </div>
+
+    <div class="howto">
+      <h2>How to use the Number Base Converter</h2>
+      <ol>
+        <li><strong>Step 1.</strong> Type your number into the value box.</li>
+        <li><strong>Step 2.</strong> Select which base that number is currently written in.</li>
+        <li><strong>Step 3.</strong> All four equivalent values — decimal, binary, hex, and octal — update instantly.</li>
+      </ol>
+    </div>
+
+    <div class="faq">
+      <h2>Frequently asked questions</h2>
+      <div class="faq-item"><h4>Why do computers use binary?</h4><p>Computer hardware is built from switches with two states (on/off), so binary (base 2) maps directly to how transistors and memory work.</p></div>
+      <div class="faq-item"><h4>Where is hexadecimal commonly used?</h4><p>Hex is widely used for color codes, memory addresses, and byte-level data because it represents 4 binary digits compactly.</p></div>
+    </div>
+
+  </div>
+</main>
+
+<footer class="site">
+  <div class="flinks">
+    <a href="../index.html">Home</a>
+    <a href="../blog/index.html">Blog</a>
+    <a href="../about.html">About</a>
+    <a href="../contact.html">Contact</a>
+    <a href="../privacy-policy.html">Privacy Policy</a>
+    <a href="../terms.html">Terms</a>
+  </div>
+  © 2026 ToolsPhere. All tools run locally in your browser.
+</footer>
+
+<script src="../assets/main.js"></script>
+<script>
+  function convertBase(){
+    const raw = document.getElementById('nbInput').value.trim();
+    const fromBase = parseInt(document.getElementById('nbFrom').value, 10);
+    const dec = parseInt(raw, fromBase);
+    if(isNaN(dec)){
+      ['nbDec','nbBin','nbHex','nbOct'].forEach(id=>document.getElementById(id).textContent='—');
+      return;
+    }
+    document.getElementById('nbDec').textContent = dec.toString(10);
+    document.getElementById('nbBin').textContent = dec.toString(2);
+    document.getElementById('nbHex').textContent = dec.toString(16).toUpperCase();
+    document.getElementById('nbOct').textContent = dec.toString(8);
+  }
+  convertBase();
+</script>
+</body>
+</html>

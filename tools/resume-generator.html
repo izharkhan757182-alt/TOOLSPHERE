@@ -1,0 +1,153 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24'%3E%3Crect x='2' y='2' width='14' height='14' rx='4' fill='%237B5CFA'/%3E%3Crect x='8' y='8' width='14' height='14' rx='4' fill='%23C6FF3D' fill-opacity='0.9'/%3E%3C/svg%3E">
+<meta name="theme-color" content="#7B5CFA">
+<title>Free Resume / CV Generator — Build & Print Online | ToolsPhere</title>
+<meta name="description" content="Build a clean, professional resume from a simple form and print it or save it as a PDF. Free, no signup.">
+<link rel="canonical" href="https://toolsphere.online/tools/resume-generator.html">
+<meta property="og:title" content="Free Resume / CV Generator — Build & Print Online | ToolsPhere">
+<meta property="og:description" content="Build a clean, professional resume from a simple form and print it or save it as a PDF. Free, no signup.">
+<meta property="og:type" content="website">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;500;600;700&family=Inter:wght@400;500;600&family=JetBrains+Mono:wght@400;500;700&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="../assets/style.css">
+
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "SoftwareApplication",
+  "name": "Resume / CV Generator",
+  "applicationCategory": "UtilitiesApplication",
+  "operatingSystem": "Any",
+  "offers": { "@type": "Offer", "price": "0", "priceCurrency": "USD" }
+}
+</script>
+</head>
+<body>
+<div class="bg-orb one"></div><div class="bg-orb two"></div><div class="bg-orb three"></div>
+
+<header class="site">
+  <a class="brand" href="../index.html"><div class="mark"><span></span><span></span></div>ToolsPhere</a>
+  <nav class="main-nav">
+    <a href="../index.html#tools">All Tools</a>
+    <a href="../blog/index.html">Blog</a>
+    <a href="../about.html">About</a>
+    <a href="../contact.html">Contact</a>
+    <a class="nav-cta" href="../index.html#tools">Browse Tools</a>
+  </nav>
+  <button class="menu-toggle" onclick="toggleMenu()">☰</button>
+</header>
+
+<main>
+  <div class="wrap">
+    <div class="breadcrumb"><a href="../index.html">Home</a> / <a href="../index.html#tools">Tools</a> / Resume / CV Generator</div>
+    <span class="eyebrow">Career</span>
+    <h1 style="font-size:clamp(28px,4vw,42px); max-width:680px; margin:16px 0 10px;">Resume / CV Generator</h1>
+    <p class="sub" style="max-width:560px; margin-bottom:8px;">Fill in your details and see a clean resume build itself live. Print or save it as a PDF when you're done.</p>
+
+
+    <button class="btn no-print" onclick="window.print()">🖨 Print / Save as PDF</button>
+    <div class="grid-2" style="margin-top:16px;">
+      <div class="card no-print">
+        <h3>Your details</h3>
+        <label>Full name</label><input type="text" id="rFullName" value="Your Name" oninput="renderResume()">
+        <div class="row"><div><label>Job title</label><input type="text" id="rTitle" value="Job Title" oninput="renderResume()"></div></div>
+        <div class="row">
+          <div><label>Email</label><input type="text" id="rEmail" value="you@email.com" oninput="renderResume()"></div>
+          <div><label>Phone</label><input type="text" id="rPhone" value="+91 00000 00000" oninput="renderResume()"></div>
+        </div>
+        <label style="margin-top:14px;">Summary</label>
+        <textarea id="rSummary" style="min-height:70px;" oninput="renderResume()">Brief 2-3 line professional summary describing your experience and strengths.</textarea>
+        <label style="margin-top:14px;">Experience (one entry per line: Role, Company, Years, Description)</label>
+        <textarea id="rExperience" style="min-height:110px;" oninput="renderResume()">Content Creator, Islamic Story, 2023–present, Produce and edit short-form Islamic story videos in Hindi.
+Freelance Web Developer, Self-employed, 2022–present, Build websites and tools for small businesses.</textarea>
+        <label style="margin-top:14px;">Education (one per line: Degree, School, Year)</label>
+        <textarea id="rEducation" style="min-height:70px;" oninput="renderResume()">B.A., Your University, 2022</textarea>
+        <label style="margin-top:14px;">Skills (comma separated)</label>
+        <input type="text" id="rSkills" value="Video Editing, Web Development, Content Writing, SEO" oninput="renderResume()">
+      </div>
+      <div class="card print-area" id="resumeOutput"></div>
+    </div>
+
+    <div class="howto">
+      <h2>How to use the Resume / CV Generator</h2>
+      <ol>
+        <li><strong>Step 1.</strong> Fill in your name, contact details, and a short summary.</li>
+        <li><strong>Step 2.</strong> List your experience and education, one entry per line, using the comma format shown as an example.</li>
+        <li><strong>Step 3.</strong> Add your skills separated by commas.</li>
+        <li><strong>Step 4.</strong> Click <strong>Print / Save as PDF</strong> once the preview on the right looks right.</li>
+      </ol>
+    </div>
+
+    <div class="faq">
+      <h2>Frequently asked questions</h2>
+      <div class="faq-item"><h4>Is my resume data saved anywhere?</h4><p>No, everything is generated live in your browser. Save or print it before closing the tab, since nothing is stored.</p></div>
+      <div class="faq-item"><h4>Can I reorder sections?</h4><p>This version follows a fixed, ATS-friendly order: summary, experience, education, skills — the most commonly expected resume structure.</p></div>
+    </div>
+
+  </div>
+</main>
+
+<footer class="site">
+  <div class="flinks">
+    <a href="../index.html">Home</a>
+    <a href="../blog/index.html">Blog</a>
+    <a href="../about.html">About</a>
+    <a href="../contact.html">Contact</a>
+    <a href="../privacy-policy.html">Privacy Policy</a>
+    <a href="../terms.html">Terms</a>
+  </div>
+  © 2026 ToolsPhere. All tools run locally in your browser.
+</footer>
+
+<script src="../assets/main.js"></script>
+<script>
+  function renderResume(){
+    const name = document.getElementById('rFullName').value;
+    const title = document.getElementById('rTitle').value;
+    const email = document.getElementById('rEmail').value;
+    const phone = document.getElementById('rPhone').value;
+    const summary = document.getElementById('rSummary').value;
+    const expLines = document.getElementById('rExperience').value.split('\n').filter(Boolean);
+    const eduLines = document.getElementById('rEducation').value.split('\n').filter(Boolean);
+    const skills = document.getElementById('rSkills').value.split(',').map(s=>s.trim()).filter(Boolean);
+
+    let expHtml = expLines.map(line=>{
+      const parts = line.split(',').map(p=>p.trim());
+      const [role='', company='', years='', desc=''] = parts;
+      return `<div style="margin-bottom:12px;">
+        <div style="display:flex; justify-content:space-between; font-weight:600; font-size:14px;"><span>${role}${company ? ' · '+company : ''}</span><span style="color:#8a8578; font-weight:400; font-size:12.5px;">${years}</span></div>
+        <div style="font-size:13px; color:#5a564c; margin-top:2px;">${desc}</div>
+      </div>`;
+    }).join('');
+
+    let eduHtml = eduLines.map(line=>{
+      const parts = line.split(',').map(p=>p.trim());
+      const [degree='', school='', year=''] = parts;
+      return `<div style="display:flex; justify-content:space-between; font-size:13.5px; margin-bottom:6px;"><span>${degree}${school ? ' — '+school : ''}</span><span style="color:#8a8578;">${year}</span></div>`;
+    }).join('');
+
+    let skillsHtml = skills.map(s=>`<span style="background:#f0ede4; padding:4px 10px; border-radius:999px; font-size:12.5px; margin:0 6px 6px 0; display:inline-block;">${s}</span>`).join('');
+
+    document.getElementById('resumeOutput').innerHTML = `
+      <div style="border-bottom:2px solid #161A22; padding-bottom:14px; margin-bottom:16px;">
+        <h2 style="font-size:24px; margin:0;">${name}</h2>
+        <div style="color:#5a564c; font-size:14px; margin-top:2px;">${title}</div>
+        <div style="color:#8a8578; font-size:12.5px; margin-top:6px;">${email} · ${phone}</div>
+      </div>
+      <div style="font-size:13.5px; color:#3d3a33; margin-bottom:18px; line-height:1.6;">${summary}</div>
+      <h3 style="font-size:13px; text-transform:uppercase; letter-spacing:0.08em; color:#8a8578; margin-bottom:10px;">Experience</h3>
+      ${expHtml}
+      <h3 style="font-size:13px; text-transform:uppercase; letter-spacing:0.08em; color:#8a8578; margin:18px 0 10px;">Education</h3>
+      ${eduHtml}
+      <h3 style="font-size:13px; text-transform:uppercase; letter-spacing:0.08em; color:#8a8578; margin:18px 0 10px;">Skills</h3>
+      <div>${skillsHtml}</div>
+    `;
+  }
+  renderResume();
+</script>
+</body>
+</html>

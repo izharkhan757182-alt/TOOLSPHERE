@@ -1,0 +1,112 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24'%3E%3Crect x='2' y='2' width='14' height='14' rx='4' fill='%237B5CFA'/%3E%3Crect x='8' y='8' width='14' height='14' rx='4' fill='%23C6FF3D' fill-opacity='0.9'/%3E%3C/svg%3E">
+<meta name="theme-color" content="#7B5CFA">
+<title>Hash Generator — SHA-256, SHA-1, SHA-512 | ToolsPhere</title>
+<meta name="description" content="Generate SHA-1, SHA-256, and SHA-512 hashes from any text instantly, using your browser's built-in crypto engine.">
+<link rel="canonical" href="https://toolsphere.online/tools/hash-generator.html">
+<meta property="og:title" content="Hash Generator — SHA-256, SHA-1, SHA-512 | ToolsPhere">
+<meta property="og:description" content="Generate SHA-1, SHA-256, and SHA-512 hashes from any text instantly, using your browser's built-in crypto engine.">
+<meta property="og:type" content="website">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;500;600;700&family=Inter:wght@400;500;600&family=JetBrains+Mono:wght@400;500;700&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="../assets/style.css">
+
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "SoftwareApplication",
+  "name": "Hash Generator",
+  "applicationCategory": "UtilitiesApplication",
+  "operatingSystem": "Any",
+  "offers": { "@type": "Offer", "price": "0", "priceCurrency": "USD" }
+}
+</script>
+</head>
+<body>
+<div class="bg-orb one"></div><div class="bg-orb two"></div><div class="bg-orb three"></div>
+
+<header class="site">
+  <a class="brand" href="../index.html"><div class="mark"><span></span><span></span></div>ToolsPhere</a>
+  <nav class="main-nav">
+    <a href="../index.html#tools">All Tools</a>
+    <a href="../blog/index.html">Blog</a>
+    <a href="../about.html">About</a>
+    <a href="../contact.html">Contact</a>
+    <a class="nav-cta" href="../index.html#tools">Browse Tools</a>
+  </nav>
+  <button class="menu-toggle" onclick="toggleMenu()">☰</button>
+</header>
+
+<main>
+  <div class="wrap">
+    <div class="breadcrumb"><a href="../index.html">Home</a> / <a href="../index.html#tools">Tools</a> / Hash Generator</div>
+    <span class="eyebrow">Developer tools</span>
+    <h1 style="font-size:clamp(28px,4vw,42px); max-width:680px; margin:16px 0 10px;">Hash Generator</h1>
+    <p class="sub" style="max-width:560px; margin-bottom:8px;">Generate cryptographic hashes of any text using SHA-1, SHA-256, or SHA-512.</p>
+
+
+    <div class="card">
+      <h3>Input text</h3>
+      <textarea id="hashInput" placeholder="Type or paste text here..." oninput="genHashes()"></textarea>
+      <div class="stat-grid" style="grid-template-columns:1fr; margin-top:16px;">
+        <div class="stat-box"><b style="font-size:12px; word-break:break-all;" id="hashSha1">—</b><span>SHA-1</span></div>
+        <div class="stat-box"><b style="font-size:12px; word-break:break-all;" id="hashSha256">—</b><span>SHA-256</span></div>
+        <div class="stat-box"><b style="font-size:11px; word-break:break-all;" id="hashSha512">—</b><span>SHA-512</span></div>
+      </div>
+    </div>
+
+    <div class="howto">
+      <h2>How to use the Hash Generator</h2>
+      <ol>
+        <li><strong>Step 1.</strong> Type or paste the text you want to hash.</li>
+        <li><strong>Step 2.</strong> SHA-1, SHA-256, and SHA-512 hashes are computed instantly and shown below.</li>
+        <li><strong>Step 3.</strong> Click any hash value to copy it.</li>
+      </ol>
+    </div>
+
+    <div class="faq">
+      <h2>Frequently asked questions</h2>
+      <div class="faq-item"><h4>What is a hash used for?</h4><p>Hashes are used to verify data integrity, store passwords securely (with additional salting), and generate unique fingerprints for files or text.</p></div>
+      <div class="faq-item"><h4>Is this computed locally?</h4><p>Yes, using your browser's built-in Web Crypto API — your text is never sent anywhere.</p></div>
+      <div class="faq-item"><h4>Can a hash be reversed back to the original text?</h4><p>No, cryptographic hashes are one-way functions by design — you cannot recover the original text from the hash alone.</p></div>
+    </div>
+
+  </div>
+</main>
+
+<footer class="site">
+  <div class="flinks">
+    <a href="../index.html">Home</a>
+    <a href="../blog/index.html">Blog</a>
+    <a href="../about.html">About</a>
+    <a href="../contact.html">Contact</a>
+    <a href="../privacy-policy.html">Privacy Policy</a>
+    <a href="../terms.html">Terms</a>
+  </div>
+  © 2026 ToolsPhere. All tools run locally in your browser.
+</footer>
+
+<script src="../assets/main.js"></script>
+<script>
+  async function sha(algo, text){
+    const enc = new TextEncoder().encode(text);
+    const buf = await crypto.subtle.digest(algo, enc);
+    return Array.from(new Uint8Array(buf)).map(b=>b.toString(16).padStart(2,'0')).join('');
+  }
+  async function genHashes(){
+    const text = document.getElementById('hashInput').value;
+    if(!text){ ['hashSha1','hashSha256','hashSha512'].forEach(id=>document.getElementById(id).textContent='—'); return; }
+    document.getElementById('hashSha1').textContent = await sha('SHA-1', text);
+    document.getElementById('hashSha256').textContent = await sha('SHA-256', text);
+    document.getElementById('hashSha512').textContent = await sha('SHA-512', text);
+  }
+  ['hashSha1','hashSha256','hashSha512'].forEach(id=>{
+    document.getElementById(id).addEventListener('click', function(){ navigator.clipboard.writeText(this.textContent); });
+  });
+</script>
+</body>
+</html>

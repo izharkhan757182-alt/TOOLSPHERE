@@ -1,0 +1,133 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24'%3E%3Crect x='2' y='2' width='14' height='14' rx='4' fill='%237B5CFA'/%3E%3Crect x='8' y='8' width='14' height='14' rx='4' fill='%23C6FF3D' fill-opacity='0.9'/%3E%3C/svg%3E">
+<meta name="theme-color" content="#7B5CFA">
+<title>Color Palette Generator — From One Color | ToolsPhere</title>
+<meta name="description" content="Generate a matching color palette (complementary, analogous, shades) from any base color. Free design tool.">
+<link rel="canonical" href="https://toolsphere.online/tools/color-palette-generator.html">
+<meta property="og:title" content="Color Palette Generator — From One Color | ToolsPhere">
+<meta property="og:description" content="Generate a matching color palette (complementary, analogous, shades) from any base color. Free design tool.">
+<meta property="og:type" content="website">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;500;600;700&family=Inter:wght@400;500;600&family=JetBrains+Mono:wght@400;500;700&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="../assets/style.css">
+
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "SoftwareApplication",
+  "name": "Color Palette Generator",
+  "applicationCategory": "UtilitiesApplication",
+  "operatingSystem": "Any",
+  "offers": { "@type": "Offer", "price": "0", "priceCurrency": "USD" }
+}
+</script>
+</head>
+<body>
+<div class="bg-orb one"></div><div class="bg-orb two"></div><div class="bg-orb three"></div>
+
+<header class="site">
+  <a class="brand" href="../index.html"><div class="mark"><span></span><span></span></div>ToolsPhere</a>
+  <nav class="main-nav">
+    <a href="../index.html#tools">All Tools</a>
+    <a href="../blog/index.html">Blog</a>
+    <a href="../about.html">About</a>
+    <a href="../contact.html">Contact</a>
+    <a class="nav-cta" href="../index.html#tools">Browse Tools</a>
+  </nav>
+  <button class="menu-toggle" onclick="toggleMenu()">☰</button>
+</header>
+
+<main>
+  <div class="wrap">
+    <div class="breadcrumb"><a href="../index.html">Home</a> / <a href="../index.html#tools">Tools</a> / Color Palette Generator</div>
+    <span class="eyebrow">Design tools</span>
+    <h1 style="font-size:clamp(28px,4vw,42px); max-width:680px; margin:16px 0 10px;">Color Palette Generator</h1>
+    <p class="sub" style="max-width:560px; margin-bottom:8px;">Pick one base color and get a full matching palette instantly.</p>
+
+
+    <div class="card">
+      <h3>Base color</h3>
+      <input type="color" id="cpBase" value="#7B5CFA" oninput="genPalette()">
+      <div id="cpPalette" style="display:grid; grid-template-columns:repeat(auto-fill, minmax(90px,1fr)); gap:10px; margin-top:20px;"></div>
+    </div>
+
+    <div class="howto">
+      <h2>How to use the Color Palette Generator</h2>
+      <ol>
+        <li><strong>Step 1.</strong> Pick a base color using the color picker.</li>
+        <li><strong>Step 2.</strong> A full palette generates instantly: shades, tints, and a complementary color.</li>
+        <li><strong>Step 3.</strong> Click any swatch to copy its HEX code.</li>
+      </ol>
+    </div>
+
+    <div class="faq">
+      <h2>Frequently asked questions</h2>
+      <div class="faq-item"><h4>What's the difference between shades and tints?</h4><p>Shades mix your color with black (darker), while tints mix it with white (lighter) — both keep the same hue.</p></div>
+      <div class="faq-item"><h4>What's a complementary color?</h4><p>It's the color directly opposite on the color wheel, often used to create high-contrast accents alongside your base color.</p></div>
+    </div>
+
+  </div>
+</main>
+
+<footer class="site">
+  <div class="flinks">
+    <a href="../index.html">Home</a>
+    <a href="../blog/index.html">Blog</a>
+    <a href="../about.html">About</a>
+    <a href="../contact.html">Contact</a>
+    <a href="../privacy-policy.html">Privacy Policy</a>
+    <a href="../terms.html">Terms</a>
+  </div>
+  © 2026 ToolsPhere. All tools run locally in your browser.
+</footer>
+
+<script src="../assets/main.js"></script>
+<script>
+  function hexToHsl(hex){
+    hex = hex.replace('#','');
+    const r = parseInt(hex.slice(0,2),16)/255, g = parseInt(hex.slice(2,4),16)/255, b = parseInt(hex.slice(4,6),16)/255;
+    const max=Math.max(r,g,b), min=Math.min(r,g,b);
+    let h,s,l=(max+min)/2;
+    if(max===min){ h=s=0; } else {
+      const d = max-min; s = l>0.5 ? d/(2-max-min) : d/(max+min);
+      switch(max){ case r: h=(g-b)/d+(g<b?6:0); break; case g: h=(b-r)/d+2; break; case b: h=(r-g)/d+4; break; }
+      h/=6;
+    }
+    return [h*360, s*100, l*100];
+  }
+  function hslToHex(h,s,l){
+    s/=100; l/=100;
+    const c=(1-Math.abs(2*l-1))*s, x=c*(1-Math.abs((h/60)%2-1)), m=l-c/2;
+    let r,g,b;
+    if(h<60){r=c;g=x;b=0;} else if(h<120){r=x;g=c;b=0;} else if(h<180){r=0;g=c;b=x;}
+    else if(h<240){r=0;g=x;b=c;} else if(h<300){r=x;g=0;b=c;} else {r=c;g=0;b=x;}
+    const toHex = v => Math.round((v+m)*255).toString(16).padStart(2,'0');
+    return '#'+toHex(r)+toHex(g)+toHex(b);
+  }
+  function genPalette(){
+    const base = document.getElementById('cpBase').value;
+    const [h,s,l] = hexToHsl(base);
+    const swatches = [
+      {label:'Darkest', color: hslToHex(h,s,Math.max(l-30,5))},
+      {label:'Dark', color: hslToHex(h,s,Math.max(l-15,10))},
+      {label:'Base', color: base},
+      {label:'Light', color: hslToHex(h,s,Math.min(l+15,90))},
+      {label:'Lightest', color: hslToHex(h,s,Math.min(l+30,95))},
+      {label:'Complementary', color: hslToHex((h+180)%360,s,l)},
+    ];
+    document.getElementById('cpPalette').innerHTML = swatches.map(sw=>`
+      <div onclick="navigator.clipboard.writeText('${sw.color}')" style="cursor:pointer; text-align:center;">
+        <div style="height:70px; border-radius:10px; background:${sw.color}; border:1px solid var(--border);"></div>
+        <div style="font-size:11px; color:var(--text-dim); margin-top:6px;">${sw.label}</div>
+        <div style="font-family:'JetBrains Mono',monospace; font-size:11px;">${sw.color}</div>
+      </div>
+    `).join('');
+  }
+  genPalette();
+</script>
+</body>
+</html>

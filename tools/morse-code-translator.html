@@ -1,0 +1,117 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24'%3E%3Crect x='2' y='2' width='14' height='14' rx='4' fill='%237B5CFA'/%3E%3Crect x='8' y='8' width='14' height='14' rx='4' fill='%23C6FF3D' fill-opacity='0.9'/%3E%3C/svg%3E">
+<meta name="theme-color" content="#7B5CFA">
+<title>Morse Code Translator | ToolsPhere</title>
+<meta name="description" content="Translate text to Morse code and back instantly. Free online Morse code encoder and decoder.">
+<link rel="canonical" href="https://toolsphere.online/tools/morse-code-translator.html">
+<meta property="og:title" content="Morse Code Translator | ToolsPhere">
+<meta property="og:description" content="Translate text to Morse code and back instantly. Free online Morse code encoder and decoder.">
+<meta property="og:type" content="website">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;500;600;700&family=Inter:wght@400;500;600&family=JetBrains+Mono:wght@400;500;700&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="../assets/style.css">
+
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "SoftwareApplication",
+  "name": "Morse Code Translator",
+  "applicationCategory": "UtilitiesApplication",
+  "operatingSystem": "Any",
+  "offers": { "@type": "Offer", "price": "0", "priceCurrency": "USD" }
+}
+</script>
+</head>
+<body>
+<div class="bg-orb one"></div><div class="bg-orb two"></div><div class="bg-orb three"></div>
+
+<header class="site">
+  <a class="brand" href="../index.html"><div class="mark"><span></span><span></span></div>ToolsPhere</a>
+  <nav class="main-nav">
+    <a href="../index.html#tools">All Tools</a>
+    <a href="../blog/index.html">Blog</a>
+    <a href="../about.html">About</a>
+    <a href="../contact.html">Contact</a>
+    <a class="nav-cta" href="../index.html#tools">Browse Tools</a>
+  </nav>
+  <button class="menu-toggle" onclick="toggleMenu()">☰</button>
+</header>
+
+<main>
+  <div class="wrap">
+    <div class="breadcrumb"><a href="../index.html">Home</a> / <a href="../index.html#tools">Tools</a> / Morse Code Translator</div>
+    <span class="eyebrow">Fun & educational</span>
+    <h1 style="font-size:clamp(28px,4vw,42px); max-width:680px; margin:16px 0 10px;">Morse Code Translator</h1>
+    <p class="sub" style="max-width:560px; margin-bottom:8px;">Translate text to Morse code, or decode Morse code back into text.</p>
+
+
+    <div class="grid-2">
+      <div class="card">
+        <h3>Text</h3>
+        <textarea id="morseText" placeholder="Type text..." oninput="textToMorse()">SOS</textarea>
+      </div>
+      <div class="card">
+        <h3>Morse code</h3>
+        <textarea id="morseOutput" placeholder="Or paste Morse code (dots/dashes, space between letters, / between words)..." oninput="morseToText()"></textarea>
+      </div>
+    </div>
+
+    <div class="howto">
+      <h2>How to use the Morse Code Translator</h2>
+      <ol>
+        <li><strong>Step 1.</strong> Type text on the left to see it translated into Morse code (dots and dashes) on the right.</li>
+        <li><strong>Step 2.</strong> Or paste Morse code on the right — separate letters with spaces and words with a forward slash (/) — to decode it into text.</li>
+        <li><strong>Step 3.</strong> Both fields sync as you type.</li>
+      </ol>
+    </div>
+
+    <div class="faq">
+      <h2>Frequently asked questions</h2>
+      <div class="faq-item"><h4>Is Morse code still used today?</h4><p>Mostly for amateur radio, emergency signaling (like SOS), and educational purposes rather than everyday communication.</p></div>
+      <div class="faq-item"><h4>What symbols does this support?</h4><p>Letters A-Z, numbers 0-9, and basic punctuation are supported.</p></div>
+    </div>
+
+  </div>
+</main>
+
+<footer class="site">
+  <div class="flinks">
+    <a href="../index.html">Home</a>
+    <a href="../blog/index.html">Blog</a>
+    <a href="../about.html">About</a>
+    <a href="../contact.html">Contact</a>
+    <a href="../privacy-policy.html">Privacy Policy</a>
+    <a href="../terms.html">Terms</a>
+  </div>
+  © 2026 ToolsPhere. All tools run locally in your browser.
+</footer>
+
+<script src="../assets/main.js"></script>
+<script>
+  const MORSE = {A:'.-',B:'-...',C:'-.-.',D:'-..',E:'.',F:'..-.',G:'--.',H:'....',I:'..',J:'.---',K:'-.-',L:'.-..',M:'--',N:'-.',O:'---',P:'.--.',Q:'--.-',R:'.-.',S:'...',T:'-',U:'..-',V:'...-',W:'.--',X:'-..-',Y:'-.--',Z:'--..','0':'-----','1':'.----','2':'..---','3':'...--','4':'....-','5':'.....','6':'-....','7':'--...','8':'---..','9':'----.'};
+  const MORSE_REV = Object.fromEntries(Object.entries(MORSE).map(([k,v])=>[v,k]));
+  let syncingMorse = false;
+  function textToMorse(){
+    if(syncingMorse) return; syncingMorse = true;
+    const text = document.getElementById('morseText').value.toUpperCase();
+    const words = text.split(' ');
+    const out = words.map(w => w.split('').map(c=>MORSE[c]||'').filter(Boolean).join(' ')).join(' / ');
+    document.getElementById('morseOutput').value = out;
+    syncingMorse = false;
+  }
+  function morseToText(){
+    if(syncingMorse) return; syncingMorse = true;
+    const morse = document.getElementById('morseOutput').value.trim();
+    const words = morse.split('/');
+    const out = words.map(w => w.trim().split(/\s+/).map(code=>MORSE_REV[code]||'').join('')).join(' ');
+    document.getElementById('morseText').value = out;
+    syncingMorse = false;
+  }
+  textToMorse();
+</script>
+</body>
+</html>

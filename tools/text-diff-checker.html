@@ -1,0 +1,128 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24'%3E%3Crect x='2' y='2' width='14' height='14' rx='4' fill='%237B5CFA'/%3E%3Crect x='8' y='8' width='14' height='14' rx='4' fill='%23C6FF3D' fill-opacity='0.9'/%3E%3C/svg%3E">
+<meta name="theme-color" content="#7B5CFA">
+<title>Text Diff Checker — Compare Two Texts Online | ToolsPhere</title>
+<meta name="description" content="Compare two blocks of text and instantly see word-level differences highlighted. Free, private, runs in your browser.">
+<link rel="canonical" href="https://toolsphere.online/tools/text-diff-checker.html">
+<meta property="og:title" content="Text Diff Checker — Compare Two Texts Online | ToolsPhere">
+<meta property="og:description" content="Compare two blocks of text and instantly see word-level differences highlighted. Free, private, runs in your browser.">
+<meta property="og:type" content="website">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;500;600;700&family=Inter:wght@400;500;600&family=JetBrains+Mono:wght@400;500;700&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="../assets/style.css">
+
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "SoftwareApplication",
+  "name": "Text Diff Checker",
+  "applicationCategory": "UtilitiesApplication",
+  "operatingSystem": "Any",
+  "offers": { "@type": "Offer", "price": "0", "priceCurrency": "USD" }
+}
+</script>
+</head>
+<body>
+<div class="bg-orb one"></div><div class="bg-orb two"></div><div class="bg-orb three"></div>
+
+<header class="site">
+  <a class="brand" href="../index.html"><div class="mark"><span></span><span></span></div>ToolsPhere</a>
+  <nav class="main-nav">
+    <a href="../index.html#tools">All Tools</a>
+    <a href="../blog/index.html">Blog</a>
+    <a href="../about.html">About</a>
+    <a href="../contact.html">Contact</a>
+    <a class="nav-cta" href="../index.html#tools">Browse Tools</a>
+  </nav>
+  <button class="menu-toggle" onclick="toggleMenu()">☰</button>
+</header>
+
+<main>
+  <div class="wrap">
+    <div class="breadcrumb"><a href="../index.html">Home</a> / <a href="../index.html#tools">Tools</a> / Text Diff Checker</div>
+    <span class="eyebrow">Developer tools</span>
+    <h1 style="font-size:clamp(28px,4vw,42px); max-width:680px; margin:16px 0 10px;">Text Diff Checker</h1>
+    <p class="sub" style="max-width:560px; margin-bottom:8px;">Paste two versions of text to see exactly what changed, word by word.</p>
+
+
+    <div class="grid-2">
+      <div class="card">
+        <h3>Original text</h3>
+        <textarea id="diffA" placeholder="Paste the original text here..." oninput="runDiff()"></textarea>
+      </div>
+      <div class="card">
+        <h3>Changed text</h3>
+        <textarea id="diffB" placeholder="Paste the updated text here..." oninput="runDiff()"></textarea>
+      </div>
+    </div>
+    <div class="card" style="margin-top:16px;">
+      <h3>Differences</h3>
+      <div id="diffResult" style="line-height:1.9; font-size:14.5px; color:var(--text-dim);">Paste text in both boxes above to see differences.</div>
+    </div>
+
+    <div class="howto">
+      <h2>How to use the Text Diff Checker</h2>
+      <ol>
+        <li><strong>Step 1.</strong> Paste your original text into the left box.</li>
+        <li><strong>Step 2.</strong> Paste the updated or edited version into the right box.</li>
+        <li><strong>Step 3.</strong> The differences appear below — removed words are struck through in red, added words are highlighted in teal.</li>
+      </ol>
+    </div>
+
+    <div class="faq">
+      <h2>Frequently asked questions</h2>
+      <div class="faq-item"><h4>What kind of diff is this?</h4><p>It's a word-level comparison — it highlights words that were added or removed between the two versions.</p></div>
+      <div class="faq-item"><h4>Can I compare paragraphs of text?</h4><p>Yes, it works on any length of text, though very long documents are easier to compare a section at a time.</p></div>
+    </div>
+
+  </div>
+</main>
+
+<footer class="site">
+  <div class="flinks">
+    <a href="../index.html">Home</a>
+    <a href="../blog/index.html">Blog</a>
+    <a href="../about.html">About</a>
+    <a href="../contact.html">Contact</a>
+    <a href="../privacy-policy.html">Privacy Policy</a>
+    <a href="../terms.html">Terms</a>
+  </div>
+  © 2026 ToolsPhere. All tools run locally in your browser.
+</footer>
+
+<script src="../assets/main.js"></script>
+<script>
+  function runDiff(){
+    const a = document.getElementById('diffA').value.trim();
+    const b = document.getElementById('diffB').value.trim();
+    const resultEl = document.getElementById('diffResult');
+    if(!a && !b){ resultEl.textContent = 'Paste text in both boxes above to see differences.'; return; }
+    const wordsA = a.split(/\s+/).filter(Boolean);
+    const wordsB = b.split(/\s+/).filter(Boolean);
+    // simple LCS-based word diff
+    const m = wordsA.length, n = wordsB.length;
+    const dp = Array.from({length:m+1}, () => new Array(n+1).fill(0));
+    for(let i=1;i<=m;i++) for(let j=1;j<=n;j++){
+      dp[i][j] = wordsA[i-1]===wordsB[j-1] ? dp[i-1][j-1]+1 : Math.max(dp[i-1][j], dp[i][j-1]);
+    }
+    let i=m, j=n; const ops = [];
+    while(i>0 && j>0){
+      if(wordsA[i-1]===wordsB[j-1]){ ops.unshift({type:'same', word:wordsA[i-1]}); i--; j--; }
+      else if(dp[i-1][j] >= dp[i][j-1]){ ops.unshift({type:'del', word:wordsA[i-1]}); i--; }
+      else { ops.unshift({type:'add', word:wordsB[j-1]}); j--; }
+    }
+    while(i>0){ ops.unshift({type:'del', word:wordsA[i-1]}); i--; }
+    while(j>0){ ops.unshift({type:'add', word:wordsB[j-1]}); j--; }
+    resultEl.innerHTML = ops.map(op=>{
+      if(op.type==='same') return `<span>${op.word}</span>`;
+      if(op.type==='del') return `<span style="color:#d16565; text-decoration:line-through; background:rgba(209,101,101,0.12); padding:0 3px; border-radius:3px;">${op.word}</span>`;
+      return `<span style="color:var(--teal); background:var(--teal-soft); padding:0 3px; border-radius:3px;">${op.word}</span>`;
+    }).join(' ');
+  }
+</script>
+</body>
+</html>

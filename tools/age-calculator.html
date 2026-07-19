@@ -1,0 +1,125 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24'%3E%3Crect x='2' y='2' width='14' height='14' rx='4' fill='%237B5CFA'/%3E%3Crect x='8' y='8' width='14' height='14' rx='4' fill='%23C6FF3D' fill-opacity='0.9'/%3E%3C/svg%3E">
+<meta name="theme-color" content="#7B5CFA">
+<title>Age Calculator — Find Your Exact Age in Years, Months, Days | ToolsPhere</title>
+<meta name="description" content="Calculate your exact age in years, months, and days from your date of birth. Free and instant.">
+<link rel="canonical" href="https://toolsphere.online/tools/age-calculator.html">
+<meta property="og:title" content="Age Calculator — Find Your Exact Age in Years, Months, Days | ToolsPhere">
+<meta property="og:description" content="Calculate your exact age in years, months, and days from your date of birth. Free and instant.">
+<meta property="og:type" content="website">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;500;600;700&family=Inter:wght@400;500;600&family=JetBrains+Mono:wght@400;500;700&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="../assets/style.css">
+
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "SoftwareApplication",
+  "name": "Age Calculator",
+  "applicationCategory": "UtilitiesApplication",
+  "operatingSystem": "Any",
+  "offers": { "@type": "Offer", "price": "0", "priceCurrency": "USD" }
+}
+</script>
+</head>
+<body>
+<div class="bg-orb one"></div><div class="bg-orb two"></div><div class="bg-orb three"></div>
+
+<header class="site">
+  <a class="brand" href="../index.html"><div class="mark"><span></span><span></span></div>ToolsPhere</a>
+  <nav class="main-nav">
+    <a href="../index.html#tools">All Tools</a>
+    <a href="../blog/index.html">Blog</a>
+    <a href="../about.html">About</a>
+    <a href="../contact.html">Contact</a>
+    <a class="nav-cta" href="../index.html#tools">Browse Tools</a>
+  </nav>
+  <button class="menu-toggle" onclick="toggleMenu()">☰</button>
+</header>
+
+<main>
+  <div class="wrap">
+    <div class="breadcrumb"><a href="../index.html">Home</a> / <a href="../index.html#tools">Tools</a> / Age Calculator</div>
+    <span class="eyebrow">Calculators</span>
+    <h1 style="font-size:clamp(28px,4vw,42px); max-width:680px; margin:16px 0 10px;">Age Calculator</h1>
+    <p class="sub" style="max-width:560px; margin-bottom:8px;">Enter your date of birth to see your exact age, and how many days until your next birthday.</p>
+
+
+    <div class="grid-2">
+      <div class="card">
+        <h3>Your details</h3>
+        <label for="dob">Date of birth</label>
+        <input type="date" id="dob" oninput="calcAge()">
+        <label style="margin-top:14px;" for="asOf">Calculate age as of</label>
+        <input type="date" id="asOf" oninput="calcAge()">
+      </div>
+      <div class="card">
+        <h3>Result</h3>
+        <div class="stat-grid">
+          <div class="stat-box"><b id="ageYears">0</b><span>Years</span></div>
+          <div class="stat-box"><b id="ageMonths">0</b><span>Months</span></div>
+          <div class="stat-box"><b id="ageDays">0</b><span>Days</span></div>
+        </div>
+        <div class="stat-box" style="width:100%;"><b id="ageDaysLeft">—</b><span>Days until next birthday</span></div>
+      </div>
+    </div>
+
+    <div class="howto">
+      <h2>How to use the Age Calculator</h2>
+      <ol>
+        <li><strong>Step 1.</strong> Select your date of birth using the date picker.</li>
+        <li><strong>Step 2.</strong> By default, today's date is used to calculate your age — or pick a different reference date.</li>
+        <li><strong>Step 3.</strong> Your age in years, months and days appears instantly, along with days left until your next birthday.</li>
+      </ol>
+    </div>
+
+    <div class="faq">
+      <h2>Frequently asked questions</h2>
+      <div class="faq-item"><h4>Does this account for leap years?</h4><p>Yes, the calculation uses actual calendar dates so leap years are automatically handled correctly.</p></div>
+      <div class="faq-item"><h4>Can I calculate someone else's age?</h4><p>Yes — just enter any date of birth, it doesn't have to be your own.</p></div>
+    </div>
+
+  </div>
+</main>
+
+<footer class="site">
+  <div class="flinks">
+    <a href="../index.html">Home</a>
+    <a href="../blog/index.html">Blog</a>
+    <a href="../about.html">About</a>
+    <a href="../contact.html">Contact</a>
+    <a href="../privacy-policy.html">Privacy Policy</a>
+    <a href="../terms.html">Terms</a>
+  </div>
+  © 2026 ToolsPhere. All tools run locally in your browser.
+</footer>
+
+<script src="../assets/main.js"></script>
+<script>
+  document.getElementById('asOf').valueAsDate = new Date();
+  function calcAge(){
+    const dobVal = document.getElementById('dob').value;
+    const asOfVal = document.getElementById('asOf').value;
+    if(!dobVal || !asOfVal) return;
+    const dob = new Date(dobVal), asOf = new Date(asOfVal);
+    if(dob > asOf) return;
+    let years = asOf.getFullYear() - dob.getFullYear();
+    let months = asOf.getMonth() - dob.getMonth();
+    let days = asOf.getDate() - dob.getDate();
+    if(days < 0){ months--; const prevMonth = new Date(asOf.getFullYear(), asOf.getMonth(), 0); days += prevMonth.getDate(); }
+    if(months < 0){ years--; months += 12; }
+    document.getElementById('ageYears').textContent = years;
+    document.getElementById('ageMonths').textContent = months;
+    document.getElementById('ageDays').textContent = days;
+    let nextBday = new Date(asOf.getFullYear(), dob.getMonth(), dob.getDate());
+    if(nextBday < asOf) nextBday.setFullYear(asOf.getFullYear()+1);
+    const diffDays = Math.round((nextBday - asOf) / 86400000);
+    document.getElementById('ageDaysLeft').textContent = diffDays;
+  }
+</script>
+</body>
+</html>

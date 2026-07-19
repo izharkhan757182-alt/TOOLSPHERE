@@ -1,0 +1,132 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24'%3E%3Crect x='2' y='2' width='14' height='14' rx='4' fill='%237B5CFA'/%3E%3Crect x='8' y='8' width='14' height='14' rx='4' fill='%23C6FF3D' fill-opacity='0.9'/%3E%3C/svg%3E">
+<meta name="theme-color" content="#7B5CFA">
+<title>Free QR Code Generator — Custom Colors & Instant PNG Download | ToolsPhere</title>
+<meta name="description" content="Generate a custom QR code from any link or text. Choose your own colors and size, then download it as a PNG — free, no signup.">
+<link rel="canonical" href="https://toolsphere.online/tools/qr-code-generator.html">
+<meta property="og:title" content="Free QR Code Generator — Custom Colors & Instant PNG Download | ToolsPhere">
+<meta property="og:description" content="Generate a custom QR code from any link or text. Choose your own colors and size, then download it as a PNG — free, no signup.">
+<meta property="og:type" content="website">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;500;600;700&family=Inter:wght@400;500;600&family=JetBrains+Mono:wght@400;500;700&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="../assets/style.css">
+<script src="https://cdnjs.cloudflare.com/ajax/libs/qrcodejs/1.0.0/qrcode.min.js"></script>
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "SoftwareApplication",
+  "name": "QR Code Generator",
+  "applicationCategory": "UtilitiesApplication",
+  "operatingSystem": "Any",
+  "offers": { "@type": "Offer", "price": "0", "priceCurrency": "USD" }
+}
+</script>
+</head>
+<body>
+<div class="bg-orb one"></div><div class="bg-orb two"></div><div class="bg-orb three"></div>
+
+<header class="site">
+  <a class="brand" href="../index.html"><div class="mark"><span></span><span></span></div>ToolsPhere</a>
+  <nav class="main-nav">
+    <a href="../index.html#tools">All Tools</a>
+    <a href="../blog/index.html">Blog</a>
+    <a href="../about.html">About</a>
+    <a href="../contact.html">Contact</a>
+    <a class="nav-cta" href="../index.html#tools">Browse Tools</a>
+  </nav>
+  <button class="menu-toggle" onclick="toggleMenu()">☰</button>
+</header>
+
+<main>
+  <div class="wrap">
+    <div class="breadcrumb"><a href="../index.html">Home</a> / <a href="../index.html#tools">Tools</a> / QR Code Generator</div>
+    <span class="eyebrow">Generators</span>
+    <h1 style="font-size:clamp(28px,4vw,42px); max-width:680px; margin:16px 0 10px;">QR Code Generator</h1>
+    <p class="sub" style="max-width:560px; margin-bottom:8px;">Turn any link or text into a scannable QR code. Customize colors and size, then download instantly.</p>
+
+
+    <div class="grid-2">
+      <div class="card">
+        <h3>Content</h3>
+        <label for="qrText">Text or URL</label>
+        <input type="text" id="qrText" value="https://example.com">
+        <div class="row">
+          <div><label for="qrFg">Foreground</label><input type="color" id="qrFg" value="#7B5CFA"></div>
+          <div><label for="qrBg">Background</label><input type="color" id="qrBg" value="#ffffff"></div>
+        </div>
+        <div class="row"><div><label for="qrSize">Size — <span id="qrSizeLabel">260</span>px</label><input type="range" id="qrSize" min="120" max="400" step="10" value="260"></div></div>
+        <button class="btn full" onclick="downloadQR()">Download PNG</button>
+      </div>
+      <div class="card">
+        <h3>Preview</h3>
+        <div style="display:flex;flex-direction:column;align-items:center;justify-content:center;min-height:300px;">
+          <div style="background:#fff;padding:18px;border-radius:16px;box-shadow:0 20px 50px rgba(0,0,0,0.45);"><div id="qrcode"></div></div>
+          <div id="qrCaption" style="margin-top:16px;font-family:'JetBrains Mono',monospace;font-size:12px;color:var(--text-dim);text-align:center;max-width:260px;word-break:break-all;"></div>
+        </div>
+      </div>
+    </div>
+
+    <div class="howto">
+      <h2>How to use the QR Code Generator</h2>
+      <ol>
+        <li><strong>Step 1.</strong> Type or paste your link, phone number, Wi-Fi text, or any message into the text box.</li>
+        <li><strong>Step 2.</strong> Pick a foreground and background color that fits your brand.</li>
+        <li><strong>Step 3.</strong> Drag the size slider to fit where you'll print or display the code.</li>
+        <li><strong>Step 4.</strong> Click <strong>Download PNG</strong> and save the file to your device.</li>
+        <li><strong>Step 5.</strong> Test it by scanning with your phone camera before printing or publishing.</li>
+      </ol>
+    </div>
+
+    <div class="faq">
+      <h2>Frequently asked questions</h2>
+      <div class="faq-item"><h4>Is this QR code generator free?</h4><p>Yes, completely free with no signup, watermark, or limit on how many codes you can create.</p></div>
+      <div class="faq-item"><h4>Do the QR codes expire?</h4><p>No. These are static QR codes — once generated, the image works forever and isn't tied to our servers.</p></div>
+      <div class="faq-item"><h4>Can I use a custom color?</h4><p>Yes, choose any foreground and background color. For best scan reliability, keep strong contrast between the two.</p></div>
+      <div class="faq-item"><h4>What can I put inside a QR code?</h4><p>URLs, plain text, phone numbers, email addresses, or Wi-Fi credentials all work — anything that fits as text.</p></div>
+    </div>
+
+  </div>
+</main>
+
+<footer class="site">
+  <div class="flinks">
+    <a href="../index.html">Home</a>
+    <a href="../blog/index.html">Blog</a>
+    <a href="../about.html">About</a>
+    <a href="../contact.html">Contact</a>
+    <a href="../privacy-policy.html">Privacy Policy</a>
+    <a href="../terms.html">Terms</a>
+  </div>
+  © 2026 ToolsPhere. All tools run locally in your browser.
+</footer>
+
+<script src="../assets/main.js"></script>
+<script>
+  let qrCount = 0;
+  function renderQR(){
+    const text = document.getElementById('qrText').value || 'https://example.com';
+    const size = parseInt(document.getElementById('qrSize').value, 10);
+    const fg = document.getElementById('qrFg').value;
+    const bg = document.getElementById('qrBg').value;
+    document.getElementById('qrSizeLabel').textContent = size;
+    document.getElementById('qrCaption').textContent = 'Scans to: ' + text;
+    const holder = document.getElementById('qrcode');
+    holder.innerHTML = '';
+    new QRCode(holder, { text, width:size, height:size, colorDark:fg, colorLight:bg, correctLevel: QRCode.CorrectLevel.H });
+  }
+  ['qrText','qrSize','qrFg','qrBg'].forEach(id=> document.getElementById(id).addEventListener('input', renderQR));
+  function downloadQR(){
+    const holder = document.getElementById('qrcode');
+    const img = holder.querySelector('img'); const canvas = holder.querySelector('canvas');
+    const link = document.createElement('a'); link.download = 'qrcode.png';
+    if(canvas){ link.href = canvas.toDataURL('image/png'); } else if(img){ link.href = img.src; } else { return; }
+    link.click();
+  }
+  renderQR();
+</script>
+</body>
+</html>

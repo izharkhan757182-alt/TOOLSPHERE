@@ -1,0 +1,109 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24'%3E%3Crect x='2' y='2' width='14' height='14' rx='4' fill='%237B5CFA'/%3E%3Crect x='8' y='8' width='14' height='14' rx='4' fill='%23C6FF3D' fill-opacity='0.9'/%3E%3C/svg%3E">
+<meta name="theme-color" content="#7B5CFA">
+<title>Discount Calculator — Sale Price & Savings | ToolsPhere</title>
+<meta name="description" content="Calculate the sale price and how much you save with any percentage discount. Free and instant.">
+<link rel="canonical" href="https://toolsphere.online/tools/discount-calculator.html">
+<meta property="og:title" content="Discount Calculator — Sale Price & Savings | ToolsPhere">
+<meta property="og:description" content="Calculate the sale price and how much you save with any percentage discount. Free and instant.">
+<meta property="og:type" content="website">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;500;600;700&family=Inter:wght@400;500;600&family=JetBrains+Mono:wght@400;500;700&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="../assets/style.css">
+
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "SoftwareApplication",
+  "name": "Discount Calculator",
+  "applicationCategory": "UtilitiesApplication",
+  "operatingSystem": "Any",
+  "offers": { "@type": "Offer", "price": "0", "priceCurrency": "USD" }
+}
+</script>
+</head>
+<body>
+<div class="bg-orb one"></div><div class="bg-orb two"></div><div class="bg-orb three"></div>
+
+<header class="site">
+  <a class="brand" href="../index.html"><div class="mark"><span></span><span></span></div>ToolsPhere</a>
+  <nav class="main-nav">
+    <a href="../index.html#tools">All Tools</a>
+    <a href="../blog/index.html">Blog</a>
+    <a href="../about.html">About</a>
+    <a href="../contact.html">Contact</a>
+    <a class="nav-cta" href="../index.html#tools">Browse Tools</a>
+  </nav>
+  <button class="menu-toggle" onclick="toggleMenu()">☰</button>
+</header>
+
+<main>
+  <div class="wrap">
+    <div class="breadcrumb"><a href="../index.html">Home</a> / <a href="../index.html#tools">Tools</a> / Discount Calculator</div>
+    <span class="eyebrow">Finance</span>
+    <h1 style="font-size:clamp(28px,4vw,42px); max-width:680px; margin:16px 0 10px;">Discount Calculator</h1>
+    <p class="sub" style="max-width:560px; margin-bottom:8px;">Find the final sale price and total savings for any discount percentage.</p>
+
+
+    <div class="grid-2">
+      <div class="card">
+        <h3>Details</h3>
+        <label>Original price</label><input type="number" id="dcPrice" value="2000" oninput="calcDiscount()">
+        <label style="margin-top:12px;">Discount (%)</label><input type="number" id="dcPct" value="25" oninput="calcDiscount()">
+      </div>
+      <div class="card">
+        <h3>Result</h3>
+        <div class="stat-grid">
+          <div class="stat-box"><b id="dcSaved">—</b><span>You save</span></div>
+          <div class="stat-box"><b id="dcFinal">—</b><span>Final price</span></div>
+        </div>
+      </div>
+    </div>
+
+    <div class="howto">
+      <h2>How to use the Discount Calculator</h2>
+      <ol>
+        <li><strong>Step 1.</strong> Enter the original price of the item.</li>
+        <li><strong>Step 2.</strong> Enter the discount percentage being offered.</li>
+        <li><strong>Step 3.</strong> See exactly how much you save and the final price to pay.</li>
+      </ol>
+    </div>
+
+    <div class="faq">
+      <h2>Frequently asked questions</h2>
+      <div class="faq-item"><h4>How is the final price calculated?</h4><p>Final price = Original price × (1 − discount% / 100).</p></div>
+      <div class="faq-item"><h4>Can I stack two discounts?</h4><p>This tool handles one discount at a time. For stacked discounts, apply the first discount, then run the result through the calculator again with the second percentage.</p></div>
+    </div>
+
+  </div>
+</main>
+
+<footer class="site">
+  <div class="flinks">
+    <a href="../index.html">Home</a>
+    <a href="../blog/index.html">Blog</a>
+    <a href="../about.html">About</a>
+    <a href="../contact.html">Contact</a>
+    <a href="../privacy-policy.html">Privacy Policy</a>
+    <a href="../terms.html">Terms</a>
+  </div>
+  © 2026 ToolsPhere. All tools run locally in your browser.
+</footer>
+
+<script src="../assets/main.js"></script>
+<script>
+  function calcDiscount(){
+    const price = parseFloat(document.getElementById('dcPrice').value)||0;
+    const pct = parseFloat(document.getElementById('dcPct').value)||0;
+    const saved = price*pct/100;
+    document.getElementById('dcSaved').textContent = saved.toFixed(2);
+    document.getElementById('dcFinal').textContent = (price-saved).toFixed(2);
+  }
+  calcDiscount();
+</script>
+</body>
+</html>
